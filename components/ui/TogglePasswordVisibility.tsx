@@ -16,9 +16,9 @@ export const TogglePasswordVisibility = ({
       onClick={toggleVisibility}
     >
       {isVisible ? (
-        <EyeOff className="w-5 text-zinc-500" />
+        <EyeOff className="w-5 text-dark-200" />
       ) : (
-        <Eye className="w-5 text-zinc-500" />
+        <Eye className="w-5 text-dark-200" />
       )}
     </button>
   );

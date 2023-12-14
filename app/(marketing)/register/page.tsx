@@ -9,12 +9,12 @@ import { ArrowLeft } from "lucide-react";
 
 export default function RegisterPage() {
   return (
-    <div className="w-full h-screen flex items-center justify-center">
+    <div className="w-full h-screen flex items-center justify-center relative">
       <Link href="/">
         <Button
           variant="flat"
           icon={<ArrowLeft className="w-5" />}
-          className="absolute top-4 left-4"
+          className="absolute top-4 left-0"
         />
       </Link>
       <AuthPage

@@ -12,8 +12,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="bg-zinc-950 text-zinc-100 antialiased">
-      <body>{children}</body>
+    <html lang="en" className="bg-dark-full text-dark-50">
+      <body>
+        <div className="w-full m-auto container">{children}</div>
+      </body>
     </html>
   );
 }

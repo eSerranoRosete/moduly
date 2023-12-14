@@ -7,12 +7,12 @@ import Link from "next/link";
 
 export default function LoginPage() {
   return (
-    <div className="w-full h-screen flex items-center justify-center">
+    <div className="w-full h-screen flex items-center justify-center relative overflow-hidden">
       <Link href="/">
         <Button
           variant="flat"
           icon={<ArrowLeft className="w-5" />}
-          className="absolute top-4 left-4"
+          className="absolute top-4 left-0"
         />
       </Link>
       <AuthPage title="Welcome Back" subtitle="Login to your account">
