@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-dark-full text-dark-50">
       <body>
-        <div className="w-full m-auto container">{children}</div>
+        <div className="w-full m-auto container px-4">{children}</div>
       </body>
     </html>
   );
