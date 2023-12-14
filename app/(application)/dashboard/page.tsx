@@ -1,25 +1,14 @@
-import { AppBar } from "@/components/blocks/AppBar";
 import { PageHeader } from "@/components/blocks/PageHeader";
 import { Button } from "@/components/ui/Button";
 import { Dialog } from "@/components/ui/Dialog";
 import { Input } from "@/components/ui/Input";
-import { UserDropdown } from "@/components/ui/UserDropdown";
 import { PlusCircle } from "lucide-react";
-import React from "react";
 
 export default function DashboardPage() {
   return (
     <>
-      <AppBar
-        navItems={[
-          { title: "Dashboard", href: "/dashboard" },
-          { title: "Editor", href: "/editor" },
-          { title: "My Team", href: "/team" },
-        ]}
-        actionItems={<UserDropdown />}
-      />
       <PageHeader
-        title="Your active cards"
+        title="Dashboard"
         actions={
           <Dialog
             title="Give your card a title"

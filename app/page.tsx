@@ -17,6 +17,11 @@ export default function Home() {
           </>
         }
       />
+      <section className="mt-32">
+        <Link href="/dashboard">
+          <Button className="m-auto">Go to Dashboard</Button>
+        </Link>
+      </section>
     </main>
   );
 }

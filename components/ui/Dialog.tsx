@@ -29,8 +29,8 @@ export const Dialog = ({
   <RadixDialog.Root>
     <RadixDialog.Trigger asChild>{trigger}</RadixDialog.Trigger>
     <RadixDialog.Portal>
-      <RadixDialog.Overlay className="bg-black/40 data-[state=open]:animate-fade-in fixed inset-0" />
-      <RadixDialog.Content className="fixed top-1/2 left-1/2 border-dark-900 border w-full max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-md bg-dark-950 p-6 focus:outline-none">
+      <RadixDialog.Overlay className="bg-black/40 data-[state=open]:animate-overlayShow fixed inset-0" />
+      <RadixDialog.Content className="fixed top-1/2 left-1/2 data-[state=open]:animate-contentShow border-dark-900 border w-full max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-md bg-dark-950 p-6 focus:outline-none">
         <RadixDialog.Title className="font-medium text-xl">
           {title}
         </RadixDialog.Title>
