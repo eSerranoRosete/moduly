@@ -28,7 +28,7 @@ export const Button = ({
           !props.children &&
           "w-10 h-10 flex items-center justify-center p-1.5",
         variant === "flat" &&
-          "bg-dark-950 hover:bg-dark-900 text-dark-100 font-normal",
+          "bg-slate-2 hover:bg-slate-3 text-slate-11 font-normal",
         className
       )}
       {...props}

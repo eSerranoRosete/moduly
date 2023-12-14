@@ -1,5 +1,9 @@
 import type { Config } from "tailwindcss";
 
+const { createPlugin } = require("windy-radix-palette");
+
+const colors = createPlugin();
+
 const config: Config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,20 +13,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        dark: {
-          "50": "#EDEEF0",
-          "100": "#B0B4BA",
-          "200": "#777B84",
-          "300": "#696E77",
-          "400": "#5A6169",
-          "500": "#43484E",
-          "600": "#363A3F",
-          "700": "#2E3135",
-          "800": "#272A2D",
-          "900": "#212225",
-          "950": "#18191B",
-          full: "#111113",
-        },
+        ...colors.colors,
       },
       keyframes: {
         overlayShow: {
@@ -67,6 +58,6 @@ const config: Config = {
     },
   },
   darkMode: "class",
-  plugins: [require("@tailwindcss/forms")],
+  plugins: [require("@tailwindcss/forms"), colors.plugin],
 };
 export default config;

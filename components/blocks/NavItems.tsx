@@ -19,7 +19,7 @@ export const NavItems = ({ navItems }: Props) => {
         <Link href={item.href} key={item.title} className="relative">
           <Button variant="flat">{item.title}</Button>
           {path.includes(item.href) && (
-            <div className="w-full h-0.5 bg-dark-100 absolute bottom-0 translate-y-1/2" />
+            <div className="w-full h-0.5 bg-slate-11 absolute bottom-0 translate-y-1/2" />
           )}
         </Link>
       ))}

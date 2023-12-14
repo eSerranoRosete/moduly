@@ -23,12 +23,6 @@ export default function DashboardPage() {
           </Dialog>
         }
       />
-      {/* <section className="grid grid-cols-4 gap-4 ">
-        <div className="h-32 bg-dark-900 rounded-md"></div>
-        <div className="h-32 bg-dark-900 rounded-md"></div>
-        <div className="h-32 bg-dark-900 rounded-md"></div>
-        <div className="h-32 bg-dark-900 rounded-md"></div>
-      </section> */}
     </>
   );
 }
