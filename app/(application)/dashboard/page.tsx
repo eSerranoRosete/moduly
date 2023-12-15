@@ -1,4 +1,5 @@
 import { PageHeader } from "@/components/blocks/PageHeader";
+import { EditorWorkspace } from "@/components/editor/EditorWorkspace";
 import { Button } from "@/components/ui/Button";
 import { Dialog } from "@/components/ui/Dialog";
 import { Input } from "@/components/ui/Input";
@@ -23,6 +24,7 @@ export default function DashboardPage() {
           </Dialog>
         }
       />
+      <EditorWorkspace />
     </>
   );
 }

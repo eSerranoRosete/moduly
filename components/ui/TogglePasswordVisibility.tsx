@@ -13,7 +13,8 @@ export const TogglePasswordVisibility = ({
     <button
       className="focus:outline-none"
       type="button"
-      onClick={toggleVisibility}
+      onMouseDown={toggleVisibility}
+      onMouseUp={toggleVisibility}
     >
       {isVisible ? (
         <EyeOff className="w-5 text-slate-8" />

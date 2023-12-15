@@ -11,7 +11,6 @@ export default function DashboardLayout({
       <AppBar
         navItems={[
           { title: "Dashboard", href: "/dashboard" },
-          { title: "Editor", href: "/editor" },
           { title: "My Team", href: "/team" },
         ]}
         actionItems={<UserDropdown />}

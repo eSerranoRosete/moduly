@@ -23,12 +23,11 @@ export const Button = ({
     <button
       disabled={isLoading}
       className={cn(
-        "gap-2 py-1.5 px-4 antialiased text-sm font-semibold bg-blue-700 hover:bg-blue-600 rounded-md flex items-center justify-center disabled:opacity-50 disabled:cursor-default",
+        "gap-2 py-1.5 px-4 antialiased text-sm font-semibold bg-indigo-9 hover:bg-indigo-10 text-slate-100 rounded-md flex items-center justify-center disabled:opacity-50 disabled:cursor-default",
         icon &&
           !props.children &&
           "w-10 h-10 flex items-center justify-center p-1.5",
-        variant === "flat" &&
-          "bg-slate-2 hover:bg-slate-3 text-slate-11 font-normal",
+        variant === "flat" && "bg-slate-3 hover:bg-slate-3 text-slate-11",
         className
       )}
       {...props}
