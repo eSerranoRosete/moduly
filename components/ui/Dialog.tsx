@@ -46,7 +46,7 @@ export const Dialog = ({
         </div>
         <RadixDialog.Close asChild>
           <Button
-            icon={<Plus className="rotate-45" />}
+            icon={Plus}
             variant="flat"
             className="absolute top-2 right-2 bg-transparent"
           />

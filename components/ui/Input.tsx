@@ -27,7 +27,7 @@ export const Input = ({
       <input
         {...props}
         className={cn(
-          "bg-slate-3 text-sm w-full pt-6 px-3 font-medium placeholder-slate-10 text-slate-11 border-transparent rounded-md focus:border-slate-6 focus:outline-none focus:ring-0",
+          "bg-slate-4 text-sm w-full pt-6 px-3 font-medium placeholder-slate-10 text-slate-11 border-transparent rounded-md focus:border-transparent focus:outline-none focus:ring-2 focus:ring-slate-9",
           props.className
         )}
       />

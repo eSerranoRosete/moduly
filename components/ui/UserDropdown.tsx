@@ -7,12 +7,12 @@ export const UserDropdown = () => {
     <Menu
       trigger={
         <button className="flex items-center text-left gap-2">
-          <div className="rounded-full w-10 h-10 bg-indigo-9 text-indigo-4 flex items-center justify-center">
+          <div className="rounded-full w-10 h-10 bg-indigo-3 text-indigo-11 flex items-center justify-center">
             ES
           </div>
           <div>
-            <div className="text-sm">Eduardo Serrano</div>
-            <div className="text-xs text-slate-10">eserranor98@gmail.com</div>
+            <div className="text-xs">Eduardo Serrano</div>
+            <div className="text-xs text-slate-9">eserranor98@gmail.com</div>
           </div>
         </button>
       }

@@ -15,7 +15,9 @@ export default function DashboardPage() {
             title="Give your card a title"
             subTitle="Don't worry, you can change this later!"
             trigger={
-              <Button icon={<PlusCircle className="w-4" />}>Create Card</Button>
+              <Button size="sm" icon={PlusCircle}>
+                Create Card
+              </Button>
             }
             actionButton={<Button>Go to Editor</Button>}
             closeButton={<Button variant="flat">Cancel</Button>}

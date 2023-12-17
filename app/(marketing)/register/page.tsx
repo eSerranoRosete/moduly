@@ -6,16 +6,15 @@ import { Input } from "@/components/ui/Input";
 import { PasswordInput } from "@/components/ui/PasswordInput";
 
 import { ArrowLeft } from "lucide-react";
+import { IconButton } from "@/components/ui/IconButton";
 
 export default function RegisterPage() {
   return (
     <div className="w-full h-screen flex items-center justify-center relative">
-      <Link href="/">
-        <Button
-          variant="flat"
-          icon={<ArrowLeft className="w-5" />}
-          className="absolute top-4 left-0"
-        />
+      <Link href="/" className="absolute top-4 left-0">
+        <IconButton variant="flat">
+          <ArrowLeft className="w-5" />
+        </IconButton>
       </Link>
       <AuthPage
         title="Let's get started"

@@ -7,7 +7,7 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div>
+    <>
       <AppBar
         navItems={[
           { title: "Dashboard", href: "/dashboard" },
@@ -16,6 +16,6 @@ export default function DashboardLayout({
         actionItems={<UserDropdown />}
       />
       {children}
-    </div>
+    </>
   );
 }

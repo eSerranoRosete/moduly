@@ -11,15 +11,15 @@ type Props = {
 
 export const PageHeader = ({ actions, title, backLink }: Props) => {
   return (
-    <section className="flex my-7 items-center">
+    <section className="flex my-3 items-center">
       <div className="grow flex space-x-2 items-baseline">
         <div className="text-2xl font-semibold flex gap-4">
           {backLink && (
             <Link href={backLink}>
-              <Button variant="flat" className="mr-2" icon={<ChevronLeft />} />
+              <Button variant="flat" className="mr-2" icon={ChevronLeft} />
             </Link>
           )}
-          <div>{title}</div>
+          <div className="text-base">{title}</div>
         </div>
       </div>
       {actions}

@@ -11,6 +11,13 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1600px",
+      },
+    },
     extend: {
       colors: {
         ...colors.colors,
