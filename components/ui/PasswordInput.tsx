@@ -1,26 +1,29 @@
 "use client";
 
-import React, { useState } from "react";
-import { Input, InputProps } from "./Input";
+import React, { forwardRef, useState } from "react";
+import { Input, type InputProps } from "./Input";
 import { TogglePasswordVisibility } from "./TogglePasswordVisibility";
 
-export const PasswordInput = ({ ...props }: InputProps) => {
-  const [passwordVisible, setPasswordVisible] = useState(false);
+export const PasswordInput = forwardRef<HTMLInputElement, InputProps>(
+  ({ ...props }: InputProps, forwardedRef) => {
+    const [passwordVisible, setPasswordVisible] = useState(false);
 
-  const toggleVisibility = () => {
-    setPasswordVisible((prev) => !prev);
-  };
+    const toggleVisibility = () => {
+      setPasswordVisible((prev) => !prev);
+    };
 
-  return (
-    <Input
-      {...props}
-      type={passwordVisible ? "text" : "password"}
-      endContent={
-        <TogglePasswordVisibility
-          isVisible={passwordVisible}
-          toggleVisibility={toggleVisibility}
-        />
-      }
-    />
-  );
-};
+    return (
+      <Input
+        {...props}
+        ref={forwardedRef}
+        type={passwordVisible ? "text" : "password"}
+        endContent={
+          <TogglePasswordVisibility
+            isVisible={passwordVisible}
+            toggleVisibility={toggleVisibility}
+          />
+        }
+      />
+    );
+  }
+);
