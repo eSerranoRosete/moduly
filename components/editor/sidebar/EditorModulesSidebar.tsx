@@ -10,7 +10,7 @@ export const EditorModulesSidebar = () => {
         Add and customize modules to your card
       </p>
       <div className="w-full h-[1px] my-4 bg-slate-6" />
-      <ModuleBtnElement element={ModuleElements.Heading} />
+      <ModuleBtnElement element={ModuleElements.Text} />
     </>
   );
 };

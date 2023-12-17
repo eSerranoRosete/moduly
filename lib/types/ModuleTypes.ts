@@ -1,7 +1,7 @@
-import { HeadingModule } from "@/components/card-modules/HeadingModule";
+import { TextModule } from "@/components/card-modules/TextModule/TextModule";
 import { ElementType } from "react";
 
-export type ModulesType = "Heading";
+export type ModulesType = "Text";
 
 export type ModuleElement = {
   type: ModulesType;
@@ -35,5 +35,5 @@ type ModuleElements = {
 };
 
 export const ModuleElements: ModuleElements = {
-  Heading: HeadingModule,
+  Text: TextModule,
 };

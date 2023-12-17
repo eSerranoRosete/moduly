@@ -95,7 +95,7 @@ export const SelectItem = ({ value, label }: SelectItemProps) => {
   return (
     <RadixSelect.Item
       value={value}
-      className="flex pl-5 data-[highlighted]:bg-indigo-9 data-[highlighted]:text-slate-11 data-[highlighted]:outline-none  rounded-md py-1 cursor-pointer"
+      className="flex pl-5 text-sm data-[highlighted]:bg-indigo-9 data-[highlighted]:text-slate-12 data-[highlighted]:outline-none  rounded-md py-1 cursor-pointer"
     >
       <RadixSelect.ItemIndicator className="absolute left-0">
         <Check className="w-3" />

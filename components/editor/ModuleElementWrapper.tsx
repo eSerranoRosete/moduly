@@ -93,21 +93,20 @@ export const ModuleElemenWrapper = ({ element }: ModuleElemenWrapperProps) => {
         </div>
       )}
 
-      <div
-        ref={topHalf.setNodeRef}
-        className={cn(
-          "absolute w-full h-1/2 top-0",
-          topHalf.isOver && "border-t-4 border-indigo-9"
+      <div ref={topHalf.setNodeRef} className="absolute w-full h-1/2 top-0">
+        {topHalf.isOver && (
+          <div className="absolute top-0 left-0 w-full h-2 -translate-y-full bg-indigo-9 rounded-full" />
         )}
-      />
+      </div>
       <EditorComponent elementInstance={element} />
       <div
         ref={bottomHalf.setNodeRef}
-        className={cn(
-          "absolute w-full h-1/2 bottom-0",
-          bottomHalf.isOver && "border-b-4 border-indigo-9"
+        className="absolute w-full h-1/2 bottom-0"
+      >
+        {bottomHalf.isOver && (
+          <div className="absolute bottom-0 left-0 w-full h-2 translate-y-full bg-indigo-9 rounded-full" />
         )}
-      />
+      </div>
     </div>
   );
 };

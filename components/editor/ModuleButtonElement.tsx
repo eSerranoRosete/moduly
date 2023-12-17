@@ -26,7 +26,7 @@ export const ModuleBtnElement = ({ element }: Props) => {
       ref={draggable.setNodeRef}
       variant="flat"
       className={cn(
-        "flex-col p-4 cursor-grab",
+        "flex-col p-4 cursor-grab w-20 h-20",
         draggable.isDragging && "ring-2 ring-indigo-9"
       )}
       {...draggable.attributes}
