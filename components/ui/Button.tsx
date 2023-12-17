@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import React, { ButtonHTMLAttributes, forwardRef } from "react";
 
-export type ButtonVariants = "default" | "flat" | "danger";
+export type ButtonVariants = "default" | "flat" | "danger" | "ghost";
 export type ButtonSizes = "sm" | "md" | "lg";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -35,6 +35,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           //variants
           variant === "flat" && "bg-slate-3 hover:bg-slate-4 text-slate-12",
           variant === "danger" && "bg-red-9 hover:bg-slate-6 text-slate-12",
+          variant === "ghost" &&
+            "bg-transparent hover:bg-slate-4 text-slate-12",
           //sizes
           size === "sm" && "py-1 px-2 text-xs",
           size === "md" && "py-1.5 px-4 text-sm",

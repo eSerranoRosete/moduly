@@ -15,6 +15,7 @@ type EditorContextType = {
 
   addElement: (index: number, element: ModuleElementInstance) => void;
   removeElement: (id: string) => void;
+  updateElement: (id: string, element: ModuleElementInstance) => void;
 
   selectedElement: ModuleElementInstance | null;
   setSelectedElement: Dispatch<SetStateAction<ModuleElementInstance | null>>;
@@ -46,7 +47,18 @@ export const EditorContextProvider = ({
     setElements((prev) => {
       const newElements = [...(prev || [])];
 
-      return newElements.filter((element) => element.id !== id);
+      return newElements.filter((el) => el.id !== id);
+    });
+  };
+
+  const updateElement = (id: string, element: ModuleElementInstance) => {
+    console.log("updating...");
+
+    setElements((prev) => {
+      const newElements = [...(prev || [])];
+      const index = newElements.findIndex((el) => el.id === id);
+      newElements[index] = element;
+      return newElements;
     });
   };
 
@@ -58,6 +70,7 @@ export const EditorContextProvider = ({
         removeElement,
         selectedElement,
         setSelectedElement,
+        updateElement,
       }}
     >
       {children}

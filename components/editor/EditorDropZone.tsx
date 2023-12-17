@@ -1,20 +1,17 @@
-import { useModulesStore } from "@/lib/hooks/useModulesStore";
-import {
-  ModuleElementInstance,
-  ModuleElements,
-  ModulesType,
-} from "@/lib/types/ModuleTypes";
+import { ModuleElements, ModulesType } from "@/lib/types/ModuleTypes";
 import { cn, generateId } from "@/lib/utils";
-import { useDndMonitor, useDraggable, useDroppable } from "@dnd-kit/core";
+import { useDndMonitor, useDroppable } from "@dnd-kit/core";
 import { useEditor } from "../context/CardContext";
-import { useState } from "react";
-import { IconButton } from "../ui/IconButton";
-import { Trash2 } from "lucide-react";
 import { ModuleElemenWrapper } from "./ModuleElementWrapper";
 
 export const EditorDropZone = () => {
-  const { elements, addElement, selectedElement, setSelectedElement } =
-    useEditor();
+  const {
+    elements,
+    addElement,
+    selectedElement,
+    setSelectedElement,
+    removeElement,
+  } = useEditor();
 
   const droppable = useDroppable({
     id: "editor-drop-area",
@@ -22,8 +19,6 @@ export const EditorDropZone = () => {
       isEditorDropArea: true,
     },
   });
-
-  console.log(elements);
 
   useDndMonitor({
     onDragEnd: (event) => {
@@ -33,11 +28,89 @@ export const EditorDropZone = () => {
 
       const isEditorBtnElement = active.data.current?.isEditorBtnElement;
 
-      if (isEditorBtnElement) {
+      const isDroppingOverEditorArea = over.data.current?.isEditorDropArea;
+
+      /**
+       * If the user is dragging an element from the sidebar and dropping it over the editor area
+       */
+      if (isEditorBtnElement && isDroppingOverEditorArea) {
         const type = active.data.current?.type as ModulesType;
         const newElement = ModuleElements[type].constructor(generateId());
 
-        addElement(0, newElement);
+        let elementIndex = elements ? elements.length : 0;
+
+        addElement(elementIndex, newElement);
+        setSelectedElement(newElement);
+        return;
+      }
+
+      const isDroppingOverModuleElementTopHalf = over.data.current?.isTopHalf;
+      const isDroppingOverModuleElementBottomHalf =
+        over.data.current?.isBottomHalf;
+
+      const isDroppingOverModuleElement =
+        isDroppingOverModuleElementTopHalf ||
+        isDroppingOverModuleElementBottomHalf;
+
+      const isDroppingSidebarBtnOverModuleElement =
+        isEditorBtnElement && isDroppingOverModuleElement;
+
+      if (isDroppingSidebarBtnOverModuleElement) {
+        const type = active.data.current?.type as ModulesType;
+        const newElement = ModuleElements[type].constructor(generateId());
+
+        if (elements) {
+          const overElementIndex = elements.findIndex(
+            (el) => el.id === over.data.current?.id
+          );
+
+          if (overElementIndex === -1) {
+            throw new Error("Element not found");
+          }
+
+          let elementIndex = overElementIndex;
+
+          if (isDroppingOverModuleElementBottomHalf) {
+            elementIndex = overElementIndex + 1;
+          }
+
+          addElement(elementIndex, newElement);
+          setSelectedElement(newElement);
+          return;
+        }
+      }
+
+      const isDraggingEditoElement = active.data.current?.isEditorElement;
+
+      const isDragginModuleOverModule =
+        isDroppingOverModuleElement && isDraggingEditoElement;
+
+      if (isDragginModuleOverModule) {
+        const activeId = active.data.current?.id;
+        const overId = over.data.current?.id;
+
+        if (elements) {
+          const activeElementIndex = elements.findIndex(
+            (el) => el.id === activeId
+          );
+
+          const overElementIndex = elements.findIndex((el) => el.id === overId);
+
+          if (activeElementIndex === -1 || overElementIndex === -1) {
+            throw new Error("Element not found");
+          }
+
+          const activeElement = { ...elements[activeElementIndex] };
+          removeElement(activeId);
+
+          let elementIndex = overElementIndex;
+
+          if (isDroppingOverModuleElementBottomHalf) {
+            elementIndex = overElementIndex + 1;
+          }
+
+          addElement(elementIndex, activeElement);
+        }
       }
     },
   });

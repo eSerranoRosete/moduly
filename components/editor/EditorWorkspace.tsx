@@ -10,7 +10,7 @@ import {
 import { EditorContextProvider } from "../context/CardContext";
 import { DragOverlayWrapper } from "./DragOverlayWrapper";
 import { EditorDropZone } from "./EditorDropZone";
-import { EditorSidebar } from "./EditorSidebar";
+import { EditorSidebar } from "./sidebar/EditorSidebar";
 
 export const EditorWorkspace = () => {
   const mouseSensor = useSensor(MouseSensor, {

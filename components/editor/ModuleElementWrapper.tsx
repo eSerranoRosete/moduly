@@ -5,6 +5,8 @@ import { Trash2 } from "lucide-react";
 import { useState } from "react";
 import { useEditor } from "../context/CardContext";
 import { IconButton } from "../ui/IconButton";
+import { AlertDialog } from "../ui/AlertDialog";
+import { Button } from "../ui/Button";
 
 type ModuleElemenWrapperProps = {
   element: ModuleElementInstance;
@@ -22,7 +24,7 @@ export const ModuleElemenWrapper = ({ element }: ModuleElemenWrapperProps) => {
     data: {
       type: element.type,
       id: element.id,
-      isTopHalfEditorElement: true,
+      isTopHalf: true,
     },
   });
 
@@ -31,7 +33,7 @@ export const ModuleElemenWrapper = ({ element }: ModuleElemenWrapperProps) => {
     data: {
       type: element.type,
       id: element.id,
-      isBottomHalfEditorElement: true,
+      isBottomHalf: true,
     },
   });
 
@@ -63,16 +65,30 @@ export const ModuleElemenWrapper = ({ element }: ModuleElemenWrapperProps) => {
     >
       {mouseOver && (
         <div className="absolute top-0 text-sm flex items-center justify-center z-10 left-0 w-full h-full bg-slate-2 opacity-85 rounded-md">
-          <IconButton
-            variant="danger"
-            className="h-full absolute right-0"
-            onClick={(e) => {
-              e.stopPropagation();
-              removeElement(element.id);
-            }}
-          >
-            <Trash2 className="w-4" />
-          </IconButton>
+          <AlertDialog
+            title="Delete Module"
+            subTitle="Are you sure you want to delete this module?"
+            cancelBtn={<Button variant="flat">Cancel</Button>}
+            actionBtn={
+              <Button
+                variant="danger"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  removeElement(element.id);
+                  if (selectedElement?.id === element.id) {
+                    setSelectedElement(null);
+                  }
+                }}
+              >
+                Delete
+              </Button>
+            }
+            trigger={
+              <IconButton variant="danger" className="h-full absolute right-0">
+                <Trash2 className="w-4" />
+              </IconButton>
+            }
+          ></AlertDialog>
           Click to edit or drag to move
         </div>
       )}
