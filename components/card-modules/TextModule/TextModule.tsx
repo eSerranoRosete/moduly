@@ -15,6 +15,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { cn } from "@/lib/utils";
 import { Select } from "../../ui/Select";
 import { Divider } from "@/components/ui/Divider";
+import { ToggleGroup } from "@/components/ui/ToggleGroup";
 
 const type: ModulesType = "Text";
 
@@ -23,6 +24,7 @@ const attributes = {
   fontSize: "xl",
   fontWeight: "normal",
   padding: "2",
+  textAlign: "center",
 };
 
 export const fontSizes = [
@@ -37,10 +39,12 @@ export const fontSizes = [
 ] as const;
 export const fontWeights = ["light", "normal", "medium", "bold"] as const;
 export const paddings = ["0", "1", "2", "3", "4", "5", "6", "7", "8"] as const;
+export const textAligns = ["left", "center", "right"] as const;
 
 export type FontSize = (typeof fontSizes)[number];
 export type FontWeight = (typeof fontWeights)[number];
 export type Padding = (typeof paddings)[number];
+export type TextAlign = (typeof textAligns)[number];
 
 export const TextModule: ModuleElement = {
   type,
@@ -66,6 +70,7 @@ type CustomInstance = ModuleElementInstance & {
     fontSize: FontSize;
     fontWeight: FontWeight;
     padding: Padding;
+    textAlign: TextAlign;
   };
 };
 
@@ -76,7 +81,7 @@ function EditorComponent({
 }) {
   const element = elementInstance as CustomInstance;
 
-  const { fontSize, fontWeight, padding } = element.attributes;
+  const { fontSize, fontWeight, padding, textAlign } = element.attributes;
 
   return (
     <div
@@ -105,7 +110,11 @@ function EditorComponent({
         padding === "5" && "p-5",
         padding === "6" && "p-6",
         padding === "7" && "p-7",
-        padding === "8" && "p-8"
+        padding === "8" && "p-8",
+
+        textAlign === "left" && "text-left",
+        textAlign === "center" && "text-center",
+        textAlign === "right" && "text-right"
       )}
     >
       {element.attributes.text}
@@ -141,7 +150,7 @@ function PropertiesComponent({
 
   const form = useForm<PropertiesSchemaType>({
     resolver: zodResolver(propertiesSchema),
-    mode: "onBlur",
+    mode: "onChange",
     defaultValues: {
       ...element.attributes,
     },
@@ -161,62 +170,52 @@ function PropertiesComponent({
   };
 
   return (
-    <>
-      <form
-        onBlur={form.handleSubmit(applyChanges)}
-        onSubmit={(e) => e.preventDefault()}
-        className="grid gap-6"
-      >
-        <Input
-          variant="classic"
-          {...form.register("text")}
-          label="Text"
-          defaultValue={element.attributes.text}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              e.currentTarget.blur();
-            }
-          }}
-        />
+    <form className="grid gap-4" onSubmit={form.handleSubmit(applyChanges)}>
+      <Input
+        variant="classic"
+        label="Text"
+        defaultValue={element.attributes.text}
+      />
 
-        <Divider />
+      <Divider />
 
-        <Select
-          options={fontSizes.map((option) => ({
-            label: option,
-            value: option,
-          }))}
-          label="Font Size"
-          helperText="The size of the text in the Text"
-          variant="inline"
-          {...form.register("fontSize")}
-          control={form.control}
-        />
+      <Select
+        defaultValue={element.attributes.fontSize}
+        options={fontSizes.map((option) => ({
+          label: option,
+          value: option,
+        }))}
+        label="Font Size"
+        helperText="The size of the text in the Text"
+        variant="inline"
+      />
 
-        <Select
-          options={fontWeights.map((option) => ({
-            label: option,
-            value: option,
-          }))}
-          label="Font Weight"
-          helperText="How thik or thin the text is"
-          variant="inline"
-          {...form.register("fontWeight")}
-          control={form.control}
-        />
+      <Select
+        defaultValue={element.attributes.fontWeight}
+        options={fontWeights.map((option) => ({
+          label: option,
+          value: option,
+        }))}
+        label="Font Weight"
+        helperText="How thik or thin the text is"
+        variant="inline"
+      />
 
-        <Select
-          options={paddings.map((option) => ({
-            label: option,
-            value: option,
-          }))}
-          label="Box Padding"
-          helperText="How much padding box has"
-          variant="inline"
-          {...form.register("padding")}
-          control={form.control}
-        />
-      </form>
-    </>
+      <Select
+        defaultValue={element.attributes.padding}
+        options={paddings.map((option) => ({
+          label: option,
+          value: option,
+        }))}
+        label="Box Padding"
+        helperText="How much padding box has"
+        variant="inline"
+      />
+
+      <ToggleGroup
+        label="Text Alignment"
+        helperText="How the text is aligned"
+      />
+    </form>
   );
 }

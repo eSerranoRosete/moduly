@@ -1,5 +1,6 @@
 import { AppBar } from "@/components/blocks/AppBar";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@radix-ui/themes";
+
 import Link from "next/link";
 
 export default function Home() {
@@ -9,17 +10,19 @@ export default function Home() {
         actionItems={
           <>
             <Link href="/login">
-              <Button variant="flat">Login</Button>
+              <Button variant="soft">Login</Button>
             </Link>
             <Link href="/register">
-              <Button variant="flat">Register</Button>
+              <Button variant="soft">Register</Button>
             </Link>
           </>
         }
       />
       <section className="mt-32">
         <Link href="/dashboard">
-          <Button className="m-auto">Go to Dashboard</Button>
+          <Button className="m-auto" type="submit">
+            Go to Dashboard
+          </Button>
         </Link>
       </section>
     </main>

@@ -1,4 +1,5 @@
 import { useEditor } from "@/components/context/CardContext";
+import { Divider } from "@/components/ui/Divider";
 import { IconButton } from "@/components/ui/IconButton";
 import {
   ModuleElement,
@@ -32,6 +33,7 @@ export const EditorPropertiesSidebar = ({ element }: Props) => {
       <p className="text-slate-11 text-xs mb-5">
         Customize the properties of this module
       </p>
+
       <PropertiesComponent elementInstance={element} />
     </div>
   );
