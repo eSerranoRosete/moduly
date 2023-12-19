@@ -16,7 +16,9 @@ export const PageHeader = ({ actions, title, backLink }: Props) => {
         <div className="text-2xl font-semibold flex gap-4">
           {backLink && (
             <Link href={backLink}>
-              <Button variant="flat" className="mr-2" icon={ChevronLeft} />
+              <Button variant="ghost" className="mr-2" size="icon">
+                <ChevronLeft />
+              </Button>
             </Link>
           )}
           <div className="text-base">{title}</div>

@@ -1,5 +1,6 @@
 import { useEditorStore } from "@/components/context/useEditorStore";
-import { IconButton } from "@/components/ui/IconButton";
+import { Button } from "@/components/ui/button";
+
 import { ModuleElementInstance, ModuleElements } from "@/lib/types/ModuleTypes";
 import { Plus } from "lucide-react";
 
@@ -16,13 +17,13 @@ export const EditorPropertiesSidebar = ({ element }: Props) => {
     <div>
       <div className="flex items-center justify-between">
         <h2 className="font-semibold text-sm">{element.type} Properties</h2>
-        <IconButton
+        <Button
           variant="ghost"
-          className="w-8 h-8"
+          size="icon"
           onClick={() => setSelectedElement(null)}
         >
-          <Plus className="rotate-45 w-8" />
-        </IconButton>
+          <Plus className="rotate-45 w-6" />
+        </Button>
       </div>
       <p className="text-xs mb-5 text-muted-foreground">
         Customize the properties of this module
