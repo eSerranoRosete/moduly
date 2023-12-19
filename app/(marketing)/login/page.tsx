@@ -1,6 +1,6 @@
 import { AuthPage } from "@/components/blocks/AuthPage";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/Input";
+import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/ui/PasswordInput";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";

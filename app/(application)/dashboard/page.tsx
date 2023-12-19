@@ -4,7 +4,7 @@ import { PageHeader } from "@/components/blocks/PageHeader";
 import { EditorWorkspace } from "@/components/editor/EditorWorkspace";
 import { Button } from "@/components/ui/button";
 
-import { Input } from "@/components/ui/Input";
+import { Input } from "@/components/ui/input";
 import { PlusCircle } from "lucide-react";
 
 import {

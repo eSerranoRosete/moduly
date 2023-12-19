@@ -1,7 +1,7 @@
 "use client";
 
 import React, { forwardRef, useState } from "react";
-import { Input, type InputProps } from "./Input";
+import { Input, type InputProps } from "./input";
 import { TogglePasswordVisibility } from "./TogglePasswordVisibility";
 
 export const PasswordInput = forwardRef<HTMLInputElement, InputProps>(

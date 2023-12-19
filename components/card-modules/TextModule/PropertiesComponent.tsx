@@ -28,7 +28,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
-import { Input } from "@/components/ui/Input";
+import { Input } from "@/components/ui/input";
 
 // must match the attributes defined above
 const propertiesSchema = z.object({
