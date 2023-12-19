@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import { AppLogo } from "../company/AppLogo";
-import { Button } from "../ui/Button";
+import { Button } from "../ui/button";
 import Link from "next/link";
 import { NavItems } from "./NavItems";
 

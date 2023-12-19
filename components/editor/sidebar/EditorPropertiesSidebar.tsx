@@ -1,20 +1,14 @@
-import { useEditor } from "@/components/context/CardContext";
-import { Divider } from "@/components/ui/Divider";
+import { useEditorStore } from "@/components/context/useEditorStore";
 import { IconButton } from "@/components/ui/IconButton";
-import {
-  ModuleElement,
-  ModuleElementInstance,
-  ModuleElements,
-} from "@/lib/types/ModuleTypes";
+import { ModuleElementInstance, ModuleElements } from "@/lib/types/ModuleTypes";
 import { Plus } from "lucide-react";
-import React from "react";
 
 type Props = {
   element: ModuleElementInstance;
 };
 
 export const EditorPropertiesSidebar = ({ element }: Props) => {
-  const { setSelectedElement } = useEditor();
+  const setSelectedElement = useEditorStore((s) => s.setSelectedElement);
 
   const PropertiesComponent = ModuleElements[element.type].propertiesComponent;
 
@@ -30,7 +24,7 @@ export const EditorPropertiesSidebar = ({ element }: Props) => {
           <Plus className="rotate-45 w-8" />
         </IconButton>
       </div>
-      <p className="text-slate-11 text-xs mb-5">
+      <p className="text-xs mb-5 text-muted-foreground">
         Customize the properties of this module
       </p>
 

@@ -1,62 +1,25 @@
-import { cn } from "@/lib/utils";
-import React, { forwardRef } from "react";
+import * as React from "react"
+
+import { cn } from "@/lib/utils"
 
 export interface InputProps
-  extends React.DetailedHTMLProps<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    HTMLInputElement
-  > {
-  label?: string;
-  endContent?: React.ReactNode;
-  errorMessage?: string;
-  variant?: "default" | "classic";
-  helperText?: string;
-}
+  extends React.InputHTMLAttributes<HTMLInputElement> {}
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(
-  (
-    {
-      label,
-      endContent,
-      errorMessage,
-      variant = "default",
-      helperText,
-      ...props
-    }: InputProps,
-    ref
-  ) => {
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ className, type, ...props }, ref) => {
     return (
-      <div className={cn("relative", variant === "classic" && "flex flex-col")}>
-        {label && (
-          <label
-            className={cn(
-              "absolute top-2 left-3 text-xs font-bold",
-              variant === "classic" && "static block mb-1"
-            )}
-          >
-            {label}
-          </label>
+      <input
+        type={type}
+        className={cn(
+          "flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
+          className
         )}
-        <input
-          ref={ref}
-          {...props}
-          className={cn(
-            "bg-slate-4 text-sm w-full pt-6 px-3 font-medium placeholder-slate-10 text-slate-11 border-transparent rounded-md focus:border-transparent focus:outline-none focus:ring-2 focus:ring-slate-9",
-            variant === "classic" && "pt-2",
-            props.className
-          )}
-        />
-
-        {endContent && (
-          <div className="absolute bottom-2 right-2">{endContent}</div>
-        )}
-        {errorMessage && (
-          <span className="text-xs text-rose-500 pl-2">{errorMessage}</span>
-        )}
-        {helperText && (
-          <p className={"mt-1 text-xs text-slate-10"}>{helperText}</p>
-        )}
-      </div>
-    );
+        ref={ref}
+        {...props}
+      />
+    )
   }
-);
+)
+Input.displayName = "Input"
+
+export { Input }

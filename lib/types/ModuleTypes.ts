@@ -1,7 +1,8 @@
+import { SpacerModule } from "@/components/card-modules/SpacerModule/SpacerModule";
 import { TextModule } from "@/components/card-modules/TextModule/TextModule";
 import { ElementType } from "react";
 
-export type ModulesType = "Text";
+export type ModulesType = "Text" | "Spacer";
 
 export type ModuleElement = {
   type: ModulesType;
@@ -36,4 +37,5 @@ type ModuleElements = {
 
 export const ModuleElements: ModuleElements = {
   Text: TextModule,
+  Spacer: SpacerModule,
 };

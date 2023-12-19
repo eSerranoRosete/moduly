@@ -8,12 +8,12 @@ import {
   ModuleElements,
   ModulesType,
 } from "@/lib/types/ModuleTypes";
-import { useEditor } from "../context/CardContext";
+import { useEditorStore } from "../context/useEditorStore";
 
 export const DragOverlayWrapper = () => {
   const [draggedItem, setItem] = useState<Active | null>(null);
 
-  const { elements } = useEditor();
+  const elements = useEditorStore((s) => s.elements);
 
   useDndMonitor({
     onDragStart: (event) => {
@@ -53,7 +53,7 @@ export const DragOverlayWrapper = () => {
         ModuleElements[element.type].editorComponent;
 
       node = (
-        <div className="bg-slate-3 rounded-md opacity-50 pointer-events-none">
+        <div className="rounded-md opacity-50 pointer-events-none bg-muted">
           <EditorElementComponent elementInstance={element} />
         </div>
       );

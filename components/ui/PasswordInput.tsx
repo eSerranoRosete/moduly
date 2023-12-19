@@ -13,17 +13,19 @@ export const PasswordInput = forwardRef<HTMLInputElement, InputProps>(
     };
 
     return (
-      <Input
-        {...props}
-        ref={forwardedRef}
-        type={passwordVisible ? "text" : "password"}
-        endContent={
+      <div className="relative">
+        <Input
+          {...props}
+          ref={forwardedRef}
+          type={passwordVisible ? "text" : "password"}
+        />
+        <div className="absolute right-2 bottom-0">
           <TogglePasswordVisibility
             isVisible={passwordVisible}
             toggleVisibility={toggleVisibility}
           />
-        }
-      />
+        </div>
+      </div>
     );
   }
 );

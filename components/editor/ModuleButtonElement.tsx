@@ -2,7 +2,7 @@
 
 import { ModuleElement } from "@/lib/types/ModuleTypes";
 import React from "react";
-import { Button } from "../ui/Button";
+import { Button } from "../ui/button";
 import { useDraggable } from "@dnd-kit/core";
 import { cn } from "@/lib/utils";
 
@@ -24,10 +24,10 @@ export const ModuleBtnElement = ({ element }: Props) => {
   return (
     <Button
       ref={draggable.setNodeRef}
-      variant="flat"
+      variant="outline"
       className={cn(
         "flex-col p-4 cursor-grab w-20 h-20",
-        draggable.isDragging && "ring-2 ring-indigo-9"
+        draggable.isDragging && "ring-2 ring-primary"
       )}
       {...draggable.attributes}
       {...draggable.listeners}
@@ -42,7 +42,7 @@ export const ModuleBtnElementDragOverlay = ({ element }: Props) => {
   const { label, icon: Icon } = element.editorButtonElement;
 
   return (
-    <Button variant="flat" className={"flex-col p-4 cursor-grab"}>
+    <Button variant="outline" className="flex-col p-4 cursor-grab">
       <Icon className="w-6" />
       <span className="text-xs">{label}</span>
     </Button>

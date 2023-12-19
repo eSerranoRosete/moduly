@@ -1,12 +1,22 @@
 import { ModuleElementInstance, ModuleElements } from "@/lib/types/ModuleTypes";
-import { cn } from "@/lib/utils";
-import { useDroppable, useDraggable } from "@dnd-kit/core";
+import { useDraggable, useDroppable } from "@dnd-kit/core";
 import { Trash2 } from "lucide-react";
 import { useState } from "react";
-import { useEditor } from "../context/CardContext";
-import { IconButton } from "../ui/IconButton";
-import { AlertDialog } from "../ui/AlertDialog";
-import { Button } from "../ui/Button";
+import { useEditorStore } from "../context/useEditorStore";
+
+import { Button } from "../ui/button";
+
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 type ModuleElemenWrapperProps = {
   element: ModuleElementInstance;
@@ -15,7 +25,8 @@ type ModuleElemenWrapperProps = {
 export const ModuleElemenWrapper = ({ element }: ModuleElemenWrapperProps) => {
   const [mouseOver, setMouseOver] = useState(false);
 
-  const { removeElement, selectedElement, setSelectedElement } = useEditor();
+  const removeElement = useEditorStore((s) => s.removeElement);
+  const setSelectedElement = useEditorStore((s) => s.setSelectedElement);
 
   const EditorComponent = ModuleElements[element.type].editorComponent;
 
@@ -48,14 +59,12 @@ export const ModuleElemenWrapper = ({ element }: ModuleElemenWrapperProps) => {
 
   if (draggable.isDragging) return null;
 
-  console.log(selectedElement, "🟦");
-
   return (
     <div
       ref={draggable.setNodeRef}
       {...draggable.listeners}
       {...draggable.attributes}
-      className="w-full rounded-md border border-dashed border-slate-4 relative !select-none cursor-pointer"
+      className="w-full rounded-md border  border-dashed relative !select-none cursor-pointer"
       onMouseEnter={() => setMouseOver(true)}
       onMouseLeave={() => setMouseOver(false)}
       onClick={(e) => {
@@ -64,38 +73,49 @@ export const ModuleElemenWrapper = ({ element }: ModuleElemenWrapperProps) => {
       }}
     >
       {mouseOver && (
-        <div className="absolute top-0 text-sm flex items-center justify-center z-10 left-0 w-full h-full bg-slate-2 opacity-85 rounded-md">
-          <AlertDialog
-            title="Delete Module"
-            subTitle="Are you sure you want to delete this module?"
-            cancelBtn={<Button variant="flat">Cancel</Button>}
-            actionBtn={
+        <div className="absolute top-0 text-sm flex items-center bg-muted/80 justify-center z-10 left-0 w-full h-full rounded-md">
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
               <Button
-                variant="danger"
+                variant="destructive"
+                size="icon"
+                className="h-full absolute right-0"
                 onClick={(e) => {
                   e.stopPropagation();
-                  removeElement(element.id);
-                  if (selectedElement?.id === element.id) {
-                    setSelectedElement(null);
-                  }
                 }}
               >
-                Delete
-              </Button>
-            }
-            trigger={
-              <IconButton variant="danger" className="h-full absolute right-0">
                 <Trash2 className="w-4" />
-              </IconButton>
-            }
-          ></AlertDialog>
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This action cannot be undone. This will permanently delete the
+                  module.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedElement(null);
+                    removeElement(element.id);
+                  }}
+                >
+                  Continue
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
           Click to edit or drag to move
         </div>
       )}
 
       <div ref={topHalf.setNodeRef} className="absolute w-full h-1/2 top-0">
         {topHalf.isOver && (
-          <div className="absolute top-0 left-0 w-full h-2 -translate-y-full bg-indigo-9 rounded-full" />
+          <div className="absolute top-0 left-0 w-full h-1 -translate-y-full rounded-full bg-primary opacity-80" />
         )}
       </div>
       <EditorComponent elementInstance={element} />
@@ -104,7 +124,7 @@ export const ModuleElemenWrapper = ({ element }: ModuleElemenWrapperProps) => {
         className="absolute w-full h-1/2 bottom-0"
       >
         {bottomHalf.isOver && (
-          <div className="absolute bottom-0 left-0 w-full h-2 translate-y-full bg-indigo-9 rounded-full" />
+          <div className="absolute bottom-0 left-0 w-full h-1 translate-y-full rounded-full  bg-primary opacity-80" />
         )}
       </div>
     </div>

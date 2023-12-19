@@ -1,5 +1,5 @@
 import React, { ButtonHTMLAttributes, ReactNode } from "react";
-import { Button, ButtonSizes, ButtonVariants } from "./Button";
+import { Button, ButtonSizes, ButtonVariants } from "./button";
 import { cn } from "@/lib/utils";
 
 export interface IconButtonProps

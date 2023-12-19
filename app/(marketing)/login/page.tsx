@@ -1,6 +1,5 @@
 import { AuthPage } from "@/components/blocks/AuthPage";
-import { Button } from "@/components/ui/Button";
-import { IconButton } from "@/components/ui/IconButton";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/Input";
 import { PasswordInput } from "@/components/ui/PasswordInput";
 import { ArrowLeft } from "lucide-react";
@@ -10,13 +9,13 @@ export default function LoginPage() {
   return (
     <div className="w-full h-screen flex items-center justify-center relative overflow-hidden">
       <Link href="/" className="absolute top-4 left-0">
-        <IconButton variant="flat">
+        <Button variant="secondary" size="icon">
           <ArrowLeft className="w-5" />
-        </IconButton>
+        </Button>
       </Link>
       <AuthPage title="Welcome Back" subtitle="Login to your account">
-        <Input label="Email" type="email" placeholder="Enter your email" />
-        <PasswordInput label="Password" placeholder="Enter your password" />
+        <Input type="email" placeholder="Enter your email" />
+        <PasswordInput placeholder="Enter your password" />
         <Button type="submit">Login</Button>
         <p className="text-center text-sm">
           Need to create an account?{" "}

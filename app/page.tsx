@@ -1,5 +1,5 @@
 import { AppBar } from "@/components/blocks/AppBar";
-import { Button } from "@radix-ui/themes";
+import { Button } from "@/components/ui/button";
 
 import Link from "next/link";
 
@@ -9,21 +9,19 @@ export default function Home() {
       <AppBar
         actionItems={
           <>
-            <Link href="/login">
-              <Button variant="soft">Login</Button>
-            </Link>
-            <Link href="/register">
-              <Button variant="soft">Register</Button>
-            </Link>
+            <Button asChild variant="secondary" size="sm">
+              <Link href="/login">Login</Link>
+            </Button>
+            <Button asChild variant="secondary" size="sm">
+              <Link href="/register">Register</Link>
+            </Button>
           </>
         }
       />
       <section className="mt-32">
-        <Link href="/dashboard">
-          <Button className="m-auto" type="submit">
-            Go to Dashboard
-          </Button>
-        </Link>
+        <Button asChild className="m-auto" type="submit">
+          <Link href="/dashboard">Go to Dashboard</Link>
+        </Button>
       </section>
     </main>
   );

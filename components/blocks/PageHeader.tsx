@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { ChevronLeft } from "lucide-react";
-import { Button } from "../ui/Button";
+import { Button } from "../ui/button";
 
 type Props = {
   title?: string;
