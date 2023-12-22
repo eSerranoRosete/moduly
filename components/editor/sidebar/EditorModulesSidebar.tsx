@@ -13,6 +13,7 @@ export const EditorModulesSidebar = () => {
       <div className="grid grid-cols-4 gap-4">
         <ModuleBtnElement element={ModuleElements.Text} />
         <ModuleBtnElement element={ModuleElements.Spacer} />
+        <ModuleBtnElement element={ModuleElements.Button} />
       </div>
     </div>
   );

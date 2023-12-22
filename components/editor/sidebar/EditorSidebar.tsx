@@ -1,6 +1,6 @@
 "use client";
 
-import { LayoutPanelLeft } from "lucide-react";
+import { Cog, LayoutPanelLeft } from "lucide-react";
 
 import { EditorModulesSidebar } from "./EditorModulesSidebar";
 import { EditorPropertiesSidebar } from "./EditorPropertiesSidebar";
@@ -15,6 +15,9 @@ export const EditorSidebar = () => {
       <div className="h-ful flex flex-col gap-4">
         <Button size="icon">
           <LayoutPanelLeft className="w-6" />
+        </Button>
+        <Button variant="secondary" size="icon">
+          <Cog className="w-6" />
         </Button>
       </div>
       <div className="w-full p-4 rounded-md bg-muted/30">

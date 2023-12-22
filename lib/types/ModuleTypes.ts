@@ -1,8 +1,10 @@
-import { SpacerModule } from "@/components/card-modules/SpacerModule/SpacerModule";
-import { TextModule } from "@/components/card-modules/TextModule/TextModule";
 import { ElementType } from "react";
 
-export type ModulesType = "Text" | "Spacer";
+import { SpacerModule } from "@/components/card-modules/SpacerModule/SpacerModule";
+import { TextModule } from "@/components/card-modules/TextModule/TextModule";
+import { ButtonModule } from "@/components/card-modules/ButtonModule/ButtonModule";
+
+export type ModulesType = "Text" | "Spacer" | "Button";
 
 export type ModuleElement = {
   type: ModulesType;
@@ -38,4 +40,5 @@ type ModuleElements = {
 export const ModuleElements: ModuleElements = {
   Text: TextModule,
   Spacer: SpacerModule,
+  Button: ButtonModule,
 };
